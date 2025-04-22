@@ -13,7 +13,6 @@ export async function login(account) {
 
   try {
     const res = await axios.post(url, account);
-    console.log(res);
     const { expired, token, message } = res.data;
 
     document.cookie = `hexToken=${token};expires=${new Date(expired)}`;
@@ -22,7 +21,6 @@ export async function login(account) {
 
     return { expired, token, message };
   } catch (error) {
-    console.error(error);
     return null;
   }
 }
@@ -41,15 +39,12 @@ export async function checkLogin() {
       .split("; ")
       .find((row) => row.startsWith("hexToken"))
       ?.split("=")[1];
-    console.log(token);
 
     const res = await axios.post(url);
-    console.log(res);
     const { success, uid } = res.data;
 
     return { success, uid };
   } catch (error) {
-    console.log("未登入", error);
     return null;
   }
 }

@@ -2,6 +2,8 @@ import { useState } from "react";
 
 import { login } from "./services/apiAuth";
 
+import toast, { Toaster } from "react-hot-toast";
+
 import AdminDashboard from "./components/AdminDashboard";
 import Login from "./components/Login";
 import CheckLogin from "./components/CheckLogin";
@@ -23,14 +25,14 @@ function App() {
     const { username, password } = formData;
 
     if (!username || !password) {
-      console.error("請輸入使用者名稱和密碼");
+      toast.error("請輸入使用者名稱和密碼");
       return;
     }
 
     const res = await login(formData);
 
     if (!res) {
-      console.log("登入失敗");
+      toast.error("登入失敗");
       return;
     }
 
@@ -63,6 +65,7 @@ function App() {
           handleInputChange={handleInputChange}
         />
       )}
+      <Toaster />
     </>
   );
 }

@@ -20,7 +20,6 @@ export async function getProducts() {
 
     return products;
   } catch (error) {
-    console.error(`取得產品發生錯誤：`, error);
     return null;
   }
 }

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 
+import toast from "react-hot-toast";
 import { getProducts } from "../services/apiProducts";
 
 import ProductsListItem from "./ProductsListItem";
@@ -15,6 +16,7 @@ function AdminDashboard() {
       const data = await getProducts();
       if (data === null) {
         setProducts([]);
+        toast.error("取得產品列表失敗");
         return;
       }
       setProducts(data);
